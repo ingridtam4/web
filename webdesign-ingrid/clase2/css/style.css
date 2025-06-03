@@ -1,0 +1,53 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color:rgb(230, 230, 230);
+}
+
+.container{
+    width: 90%;
+    height: max-content;
+    background-color: rgb(241, 135, 135);
+    margin: auto;
+    position: relative;
+}
+
+.column{
+    width: 50%;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    float: left;
+    position: relative;
+}
+
+p{
+    font-size: 18pt;
+    color: black;
+}
+
+.form-control{
+    width: 80%;
+    height:28px;
+    border-radius: 5px;
+    display: block;
+    font: 12px;
+}
+
+.form-button{
+    width: 80%;
+    height:28px;
+    border-radius: 5px;
+    display: block;
+    background-color: rgb(22, 141, 232);
+    color:rgb(255, 255, 255);
+    font-size: 14pt;
+}
+
+.link{
+    color: rgb(22, 141,232);
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
