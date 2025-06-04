@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!--SpeechSynthesis-->
+        <input type="text" id="texto" placeholder="Escribe algo">
+        <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance(document.getElementById('texto').value))">Hablar</button>
+        <!--<button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('Hola'))">Hablar</button>-->
+
+        <select id="voiceSelect"></select>
+    </body>
+    <script>
+        // SpeechSynthesis: getVoices() method
+        function populateVoiceList() {
+            if (typeof speechSynthesis === "undefined") {
+                return;
+            }
+
+            const voices = speechSynthesis.getVoices();
+
+            for (const voice of voices) {
+                const option = document.createElement("option");
+                option.textContent = `${voice.name} (${voice.lang})`;
+
+                if (voice.default) {
+                option.textContent += " — DEFAULT";
+                }
+
+                option.setAttribute("data-lang", voice.lang);
+                option.setAttribute("data-name", voice.name);
+                document.getElementById("voiceSelect").appendChild(option);
+            }
+        }
+
+        populateVoiceList();
+        if (
+            typeof speechSynthesis !== "undefined" &&
+            speechSynthesis.onvoiceschanged !== undefined
+        ) {
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+        }
+        
+        const selectedVoice = document.getElementById('voiceSelect').value;
+        const utterance = new SpeechSynthesisUtterance(document.getElementById('texto').value);
+        utterance.voice = selectedVoice;
+        speechSynthesis.speak(utterance);
+    </script>
+</html>
