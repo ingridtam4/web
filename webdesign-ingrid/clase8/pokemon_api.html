@@ -19,7 +19,6 @@
         <input type="text" id="pokemonName" placeholder="Ej: pikachu">
         <button onclick="buscarPokemon()">Buscar</button>
 
-
         <h1>Información de ....</h1>
         <div id="info">
             <p>Cargando...</p>
@@ -50,19 +49,33 @@
                         const imagen = data.sprites.front_default;
                         const tipos = data.types.map(t => t.type.name).join(', ');
                         
+                        // Actualizar el título con el nombre del Pokémon
+                        document.querySelector("h1").textContent = `Información de ${nombre.charAt(0).toUpperCase() + nombre.slice(1)}`;
+
                         infoDiv.innerHTML = `
                             <p><strong>ID:</strong> ${id}</p>
                             <p><strong>Nombre:</strong>${nombre}</p>
                             <p><strong>Altura:</strong>${altura * 10} cm</p>
                             <p><strong>Peso:</strong>${peso / 10} kg</p>
-                            <p><strong>Tipo:</strong>${tipos}</p>
+                            <p><strong>Tipo(s):</strong>${tipos}</p>
                             <img src="${imagen}" alt="${nombre}">
                         `;
+
+                        // Llamar a la síntesis de voz
+                        leerPokemon(nombre, altura, peso, tipos);
                     })
                     .catch(error => {
                         document.getElementById('info').innerHTML = `<p>Error: ${error.message}</p>`;
+                        document.querySelector("h1").textContent = "Información de...";
                     });
             }
+
+            function leerPokemon(nombre, altura, peso, tipos) {
+                const texto = `Has buscado el Pokémon ${nombre}. Su altura es ${altura * 10} centímetros, su peso es ${peso / 10} kilogramos y su tipo es ${tipos}.`;
+                const utterance = new SpeechSynthesisUtterance(texto);
+                utterance.lang = 'es-ES';  // Ajusta el idioma a español
+                window.speechSynthesis.speak(utterance);
+            }            
         </script>
 
     </body>
