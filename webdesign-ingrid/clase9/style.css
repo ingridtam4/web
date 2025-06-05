@@ -1,0 +1,21 @@
+.mini-img{
+    width: auto;
+    height: 100px;
+    transition: 300ms;
+}
+.mini-img:hover{
+    transform: scale(1.2);
+}
+
+#visor{
+    width: 500px;
+    margin:auto;
+    position: relative;
+    height: 500px;
+    background-color: azure;
+}
+
+.img-visor{
+    width: 100%;
+    height: auto;
+}

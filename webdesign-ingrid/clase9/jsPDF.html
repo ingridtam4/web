@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>PDF con jsPDF</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+    </head>
+    <body>
+        <div id="content">
+            <h2>Introducción a jQuery</h2>
+            <p>Ejemplo de uso de jsPDF</p>
+        </div>
+    </body>
+    <script>
+        var doc = new jsPDF();
+        var elementHTML = $('#content').html();
+        var specialElementHandlers = {
+            '#content': function (element, renderer) {
+                return true;
+            }
+        };
+        doc.fromHTML(elementHTML, 15, 15, {
+            'width': 170,
+            'elementHandlers': specialElementHandlers
+        });
+        doc.save('ejemplo.pdf');
+    </script>
+</html>

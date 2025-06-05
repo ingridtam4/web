@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Prueba de jquery</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--agrega el CDN a jQuery o descarga la libería-->
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#ocultar").click(function() {
+                    $("p").hide();
+                });
+
+                $("#ver").click(function() {
+                    $("p").show();
+                });
+
+                $("#titulo").click(function() {
+                    $(this).toggle(); // Oculta o muestra el título al hacer clic
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <button id="ocultar">Ocultar</button>
+        <button id="ver">Ver</button>
+        <h2 id="titulo">Introducción a jQuery</h2>
+        <p>Haz que el título también se oculte al hacer clic en el mismo</p>
+    </body>
+</html>
